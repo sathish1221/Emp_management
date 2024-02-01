@@ -109,14 +109,7 @@ if (isset($_POST['update'])) {
 
         // Check if the user has already submitted attendance for the current date
         $existingRecord = checkExistingRecord($conn, $emp_id, $att_date);
-        if(!empty($check_out)){
-            $checkQuery = "SELECT check_out FROM attendance WHERE emp_id = $emp_id AND att_date = '$att_date'";
-            $checkResult = $conn->query($checkQuery);
-        
-            if ($checkResult && $checkResult->num_rows > 0) {
-                $errors['check_out'] = 'Already logged out.';
-            }
-        } 
+       
 
         if ($existingRecord && empty($error)) {
             // User has already submitted attendance for the current date, proceed with update
@@ -182,8 +175,7 @@ $stmt->close();
         <div id="checkOutField">
             <label for="check_out">Log Out</label>
             <input type="datetime-local" class="input--style-1 check_out" name="check_out" id="check_out"  value="<?php echo date('Y-m-d\TH:i'); ?>" required>
-            <?php if (isset($errors['check_out'])) echo "<span class='error'>* " . $errors['check_out'] . "</span>"; ?>
-        </div>
+           </div>
 
         <!-- <label for="total_hours">Total Hours</label> -->
         <input type="hidden" class="input--style-1" name="total_hours"  id="total_hours" readonly>
