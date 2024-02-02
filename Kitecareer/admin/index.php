@@ -19,7 +19,7 @@ $result = mysqli_query($conn, $sql);
 <?php include('vendor/inc/nav.php'); ?>
 <div class="divider"></div>
 	<div id="divimg">
-		<h2 style="font-family: 'Montserrat', sans-serif; font-size: 25px; text-align: center;">Empolyee Leaderboard </h2>
+		<h2 class = "h2">Empolyee Leaderboard </h2>
     	<table>
 
 			<tr>

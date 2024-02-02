@@ -15,11 +15,11 @@ if (!isset($_SESSION['emp_id'])) {
 
         $sql = "SELECT employee.emp_id, employee.first_name, employee.last_name, rank.points FROM employee, rank WHERE rank.emp_id = employee.emp_id ORDER BY rank.points DESC";
 
-        $sql1 = "SELECT `project_name`, `due_date` FROM `project` WHERE emp_id = $id and status = 'Due'";
+        $sql1 = "SELECT `project_name`, `due_date` FROM `project` WHERE emp_id = '$id' and status = 'Due'";
 
-        $sql2 = "SELECT * From employee, employee_leave Where employee.emp_id = $id and employee_leave.emp_id = $id order by employee_leave.token";
+        $sql2 = "SELECT * From employee, employee_leave Where employee.emp_id = '$id' and employee_leave.emp_id = '$id' order by employee_leave.token";
 
-        $sql3 = "SELECT * FROM `salary` WHERE emp_id = $id";
+        $sql3 = "SELECT * FROM `salary` WHERE emp_id = '$id'";
 
     //echo "$sql";
     $result = mysqli_query($conn, $sql);

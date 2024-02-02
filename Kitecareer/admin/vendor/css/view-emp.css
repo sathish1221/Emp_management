@@ -26,6 +26,14 @@ tr:nth-child(even) {
   background-color: #f2f2f2
 }
 
+.h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+  text-align: center;
+  color: #777;
+  padding: 10px 0;
+}
+
 tr:hover {
   background-color: #76d7c4;
 }
@@ -34,6 +42,20 @@ th {
   background-color: #607d8b;
   color: white;
   padding: 10px;
+}
+.add-emp {
+  padding: 10px 20px;
+  background-color: green;
+  border-radius: 4px;
+  border: none;
+  margin-bottom: 10px;
+  display: flex;
+  float: right;
+  margin-right: 22px;
+}
+.add-emp a{
+  color: #fff;
+  text-decoration: none;
 }
 
 a.edit {
@@ -48,6 +70,7 @@ a.edit:hover {
   opacity: 0.7;
 }
 
+
 a.delete {
   display: inline-block;
   padding: 5px 12px;
@@ -60,7 +83,11 @@ a.delete {
 a.delete:hover {
   opacity: 0.7;
 }
-@media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 1024px) {
+  body {
+    font-size: 16px; 
+}
   table {
       overflow-x: auto;
       display: block;
@@ -69,4 +96,9 @@ a.delete:hover {
   th, td {
       min-width: 100px;
   }
+  .add-emp {
+    margin-left: auto;
+    margin-top: 10px; /* Add margin for spacing */
 }
+}
+

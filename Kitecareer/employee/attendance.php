@@ -15,19 +15,31 @@ function holidays() {
     $end = $end->modify('+1 day');
     $interval = new DateInterval('P1D');
     $daterange = new DatePeriod($begin, $interval, $end);
-    $dateStr = date('Y-m-d', strtotime('last saturday'));
-
-
     $holidayDates = [];
 
     foreach ($daterange as $date) {
         $dayOfWeek = date('w', strtotime($date->format("Y-m-d")));
-        if ($dayOfWeek == 0 ) {
+
+        // Check for Sundays (day of the week is 0) or Fourth Saturdays
+        if ($dayOfWeek == 0 || isFourthSaturday($date)) {
             $holidayDates[] = $date->format("Y-m-d");
         }
     }
 
     return $holidayDates;
+}
+
+// Function to check if a given date is the fourth Saturday
+function isFourthSaturday($date) {
+    $dayOfMonth = $date->format("j");
+    $month = $date->format("n");
+    $year = $date->format("Y");
+
+    // Calculate the fourth Saturday of the month
+    $fourthSaturday = date('j', strtotime("fourth saturday $year-$month"));
+
+    // Check if the given date is the fourth Saturday
+    return $dayOfMonth == $fourthSaturday;
 }
 
 $holidays = holidays(); 
@@ -37,7 +49,7 @@ function checkExistingRecord($conn, $emp_id, $att_date)
 {
     $sql = "SELECT * FROM attendance WHERE emp_id = ? AND att_date = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $emp_id, $att_date);
+    $stmt->bind_param("ss", $emp_id, $att_date);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
@@ -68,7 +80,7 @@ if (isset($_POST['submit'])) {
 
         $sql = "INSERT INTO attendance (emp_id, att_date, check_in, check_out, total_hours, status) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssss", $emp_id, $att_date, $check_in, $check_out, $total_hours, $status);
+        $stmt->bind_param("ssssss", $emp_id, $att_date, $check_in, $check_out, $total_hours, $status);
         $stmt->execute();
         $stmt->close();
     } else {
@@ -85,7 +97,7 @@ if (isset($_POST['update'])) {
     
     $emp_id = $_SESSION['emp_id'];
     $today = date('Y-m-d');
-    $sql1 = "SELECT * FROM attendance WHERE emp_id = $emp_id AND att_date = '$today'";
+    $sql1 = "SELECT * FROM attendance WHERE emp_id = '$emp_id' AND att_date = '$today'";
     $run = mysqli_query($conn, $sql1);
 
     if ($run && mysqli_num_rows($run) > 0) {
@@ -115,7 +127,7 @@ if (isset($_POST['update'])) {
             // User has already submitted attendance for the current date, proceed with update
             $sql = "UPDATE attendance SET check_out = ?, total_hours = ? WHERE emp_id = ? AND att_date = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssis", $check_out, $t_hours, $emp_id, $att_date);
+            $stmt->bind_param("ssss", $check_out, $t_hours, $emp_id, $att_date);
             $stmt->execute();
             $stmt->close();
         } else {
@@ -128,7 +140,7 @@ if (isset($_POST['update'])) {
 $emp_id = $_SESSION['emp_id'];
 $sql = "SELECT * FROM attendance WHERE emp_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $emp_id);
+$stmt->bind_param("s", $emp_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
@@ -197,7 +209,7 @@ $firstDate = date('Y-m-01');
 $lastDate = date('Y-m-t');
 
 // Fetch employee names
-$sqlNames = "SELECT emp_id, first_name FROM employee where emp_id = $emp_id";
+$sqlNames = "SELECT emp_id, first_name FROM employee where emp_id = '$emp_id'";
 $resultNames = mysqli_query($conn, $sqlNames);
 $employees = array();
 while ($row = mysqli_fetch_assoc($resultNames)) {

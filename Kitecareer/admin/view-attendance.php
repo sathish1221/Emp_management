@@ -11,7 +11,7 @@ if (!isset($_SESSION['a_id'])) {
 $emp_id = (isset($_GET['emp_id']) ? $_GET['emp_id'] : '');
 $sql = "SELECT * FROM attendance
         JOIN employee ON attendance.emp_id = employee.emp_id
-        WHERE attendance.emp_id = $emp_id";
+        WHERE attendance.emp_id = '$emp_id'";
 
 $result = mysqli_query($conn, $sql);
 
@@ -20,10 +20,11 @@ $result = mysqli_query($conn, $sql);
 <html lang="en">
 <head>
     <?php include('vendor/inc/head.php') ?>
+<link rel="stylesheet" href="vendor/css/atten.css"> 
 </head>
 <body>
 <?php include('vendor/inc/nav.php'); ?>
-<h1 style ="text-align:center; padding:10px 0px; color: #717171;">Attendance Details</h1>
+<h2 class="h2">Attendance Details</h2>
 <div class="contain">
 <table>
 			<tr>

@@ -63,15 +63,15 @@ else{
 
 else{
 
-      $sql = "INSERT INTO `employee`(`emp_id`, `first_name`, `last_name`, `email`, `password`, `date_of_birth`, `gender`, `contact`, `address`, `dept`, `degree`, `img`) VALUES ('','$firstname','$lastName','$email','$password','$birthday','$gender','$contact','$address','$dept','$degree','images/no.jpg')";
+      $sql = "INSERT INTO `employee`(`emp_id`, `first_name`, `last_name`, `email`, `password`, `date_of_birth`, `gender`, `contact`, `address`, `dept`, `degree`, `img`) VALUES ('$emp_id','$firstname','$lastName','$email','$password','$birthday','$gender','$contact','$address','$dept','$degree','images/no.jpg')";
 
 $result = mysqli_query($conn, $sql);
 
 $last_id = $conn->insert_id;
 
-$sqlS = "INSERT INTO `salary`(`emp_id`, `salary`, `bonus`, `total`) VALUES ('$last_id','$salary',0,'$salary')";
+$sqlS = "INSERT INTO `salary`(`emp_id`, `salary`, `bonus`, `total`) VALUES ('$emp_id','$salary',0,'$salary')";
 $salaryQ = mysqli_query($conn, $sqlS);
-$rank = mysqli_query($conn, "INSERT INTO `rank`(`emp_id`) VALUES ('$last_id')");
+$rank = mysqli_query($conn, "INSERT INTO `rank`(`emp_id`) VALUES ('$emp_id')");
 
 if(($result) == 1){
     

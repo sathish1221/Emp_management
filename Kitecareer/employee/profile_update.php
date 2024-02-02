@@ -30,7 +30,7 @@ if(isset($_POST['update']))
  
 
 
- $result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$first_name', `last_name`='$last_name', `email`='$email',`contact`='$contact', `date_of_birth`='$date_of_birth', `address`='$address', `gender`='$gender', `dept`='$dept', `degree`='$degree' WHERE emp_id=$id");
+ $result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$first_name', `last_name`='$last_name', `email`='$email',`contact`='$contact', `date_of_birth`='$date_of_birth', `address`='$address', `gender`='$gender', `dept`='$dept', `degree`='$degree' WHERE emp_id='$id'");
 
  echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
@@ -42,7 +42,7 @@ if(isset($_POST['update']))
 ?>
 <?php
   $id = (isset($_GET['emp_id']) ? $_GET['emp_id'] : '');
-  $sql = "SELECT * from `employee` WHERE emp_id=$id";
+  $sql = "SELECT * from `employee` WHERE emp_id='$id'";
   $result = mysqli_query($conn, $sql);
   if($result){
   while($res = mysqli_fetch_assoc($result)){

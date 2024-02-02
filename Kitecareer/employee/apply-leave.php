@@ -80,7 +80,7 @@
 			<?php
 
 
-				$sql = "Select employee.emp_id, employee.first_name, employee.last_name, employee_leave.start_date, employee_leave.end_date, employee_leave.reason, employee_leave.status From employee, employee_leave Where employee.emp_id = $id and employee_leave.emp_id = $id order by employee_leave.token";
+				$sql = "Select employee.emp_id, employee.first_name, employee.last_name, employee_leave.start_date, employee_leave.end_date, employee_leave.reason, employee_leave.status From employee, employee_leave Where employee.emp_id = '$id' and employee_leave.emp_id = '$id' order by employee_leave.token";
 				$result = mysqli_query($conn, $sql);
 				while ($employee = mysqli_fetch_assoc($result)) {
 					$date1 = new DateTime($employee['start_date']);

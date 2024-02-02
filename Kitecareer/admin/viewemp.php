@@ -15,12 +15,13 @@ $result = mysqli_query($conn, $sql);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('vendor/inc/head.php'); ?>
+	
 <link rel = "stylesheet" href = "vendor/css/view-emp.css">
+    <?php include('vendor/inc/head.php'); ?>
 </head>
 <body>
 <?php include('vendor/inc/nav.php'); ?>
-<h1 style ="text-align:center; padding:10px 0px; color: #717171;">Employee Details</h1>
+<h2 class="h2">Employee Details</h2>
 <button class="add-emp"><a href="add-employee.php">Add Employee</a></button>
 <div class="contain">
 <table>

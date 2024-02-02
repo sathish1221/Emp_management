@@ -33,7 +33,7 @@ if(isset($_POST['update']))
 	// $result = mysqli_query($conn, "UPDATE `employee` SET `firstName`='$firstname',`lastName`='$lastname',`email`='$email',`password`='$email',`gender`='$gender',`contact`='$contact',`nid`='$nid',`salary`='$salary',`address`='$address',`dept`='$dept',`degree`='$degree' WHERE id=$id");
 
 
-$result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',`date_of_birth`='$birthday',`gender`='$gender',`contact`='$contact',`address`='$address',`dept`='$dept',`degree`='$degree' WHERE emp_id=$id");
+$result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',`date_of_birth`='$birthday',`gender`='$gender',`contact`='$contact',`address`='$address',`dept`='$dept',`degree`='$degree' WHERE emp_id='$id'");
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
     window.location.href='viewemp.php';
@@ -46,7 +46,7 @@ $result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$firstname',`
 
 <?php
 	$id = (isset($_GET['emp_id']) ? $_GET['emp_id'] : '');
-	$sql = "SELECT * from `employee` WHERE emp_id=$id";
+	$sql = "SELECT * from `employee` WHERE emp_id='$id'";
 	$result = mysqli_query($conn, $sql);
 	if($result){
 	while($res = mysqli_fetch_assoc($result)){
@@ -78,7 +78,7 @@ $result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$firstname',`
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Update Employee Info</h2>
+                    <h2 class="h2" style ="font-family: 'Montserrat', sans-serif;font-size: 25px;text-align: center;color: #777;padding: 10px 0;">Update Employee Info</h2>
                     <form id = "registration" action="edit.php" method="POST">
 
                         <div class="row row-space">
@@ -114,20 +114,6 @@ $result = mysqli_query($conn, "UPDATE `employee` SET `first_name`='$firstname',`
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-2">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="gender">
-                                            <option disabled="disabled" selected="selected">GENDER</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
                         
                         
                         <div class="input-group">

@@ -16,8 +16,8 @@ $result = mysqli_query($conn, $sql);
 
 
   $id = (isset($_GET['emp_id']) ? $_GET['emp_id'] : '');
-  $sql = "SELECT * from `employee` WHERE emp_id=$id";
-  $sql2 = "SELECT total from `salary` WHERE emp_id = $id";
+  $sql = "SELECT * from `employee` WHERE emp_id='$id'";
+  $sql2 = "SELECT total from `salary` WHERE emp_id = '$id'";
   $result = mysqli_query($conn, $sql);
   $result2 = mysqli_query($conn , $sql2);
   $salary = mysqli_fetch_array($result2);

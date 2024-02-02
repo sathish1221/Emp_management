@@ -222,6 +222,11 @@ h6 {
   background: #4dae3c;
 }
 
+.gender{
+  padding: 8px 70px;
+  margin-top: 12px;
+}
+
 /* ==========================================================================
    #DATE PICKER
    ========================================================================== */
@@ -422,9 +427,13 @@ input {
 /* ==========================================================================
    #TITLE
    ========================================================================== */
-.title {
-  margin-bottom: 37px;
-}
+   .h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    color: #777;
+    padding: 10px 0;
+  }
 
 /* ==========================================================================
    #CARD
@@ -457,4 +466,34 @@ input {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+
 }
+@media (min-width: 320px) {
+
+  .gender{
+    margin-bottom: 10px;
+    padding: 8px 80px;
+  }
+}
+@media (min-width:375px) {
+
+  .gender{
+    margin-bottom: 10px;
+    padding: 8px 110px;
+  }
+}
+@media (min-width: 425px) {
+
+  .gender{
+    margin-bottom: 10px;
+    padding: 8px 135px;
+  }
+}
+@media (min-width: 767px) {
+
+  .gender{
+    margin-bottom: 10px;
+    padding: 8px 80px;
+  }
+}
+

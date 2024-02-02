@@ -18,7 +18,7 @@ $sql = "SELECT project_id, project.emp_id, project_name, due_date, sub_date, mar
         WHERE project.emp_id = ? AND project_id = ? AND project.emp_id = rank.emp_id AND salary.emp_id = project.emp_id AND employee.emp_id = project.emp_id AND employee.emp_id = rank.emp_id";
 
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "ii", $id, $pid);
+mysqli_stmt_bind_param($stmt, "si", $id, $pid);
 mysqli_stmt_execute($stmt);
 
 $result = mysqli_stmt_get_result($stmt);
@@ -50,10 +50,10 @@ if(isset($_POST['update']))
   echo "string";
   echo "$upSalary";
  
- $result = mysqli_query($conn, "UPDATE `project` SET `mark`='$mark' WHERE emp_id=$eid and project_id = $pid");
+ $result = mysqli_query($conn, "UPDATE `project` SET `mark`='$mark' WHERE emp_id='$eid' and project_id = $pid");
 
- $result = mysqli_query($conn, "UPDATE `rank` SET `points`='$upPoint' WHERE emp_id=$eid");
- $result = mysqli_query($conn, "UPDATE `salary` SET `bonus`='$upBonus' ,`total`='$upSalary' WHERE emp_id=$eid");
+ $result = mysqli_query($conn, "UPDATE `rank` SET `points`='$upPoint' WHERE emp_id='$eid'");
+ $result = mysqli_query($conn, "UPDATE `salary` SET `bonus`='$upBonus' ,`total`='$upSalary' WHERE emp_id='$eid'");
 
 
 
@@ -74,7 +74,7 @@ $sql1 = "SELECT project_id, project.emp_id, project.project_name, project.due_da
          WHERE project.emp_id = ? AND project.project_id = ? AND project.emp_id = rank.emp_id AND salary.emp_id = project.emp_id AND employee.emp_id = project.emp_id AND employee.emp_id = rank.emp_id";
 
 $stmt1 = mysqli_prepare($conn, $sql1);
-mysqli_stmt_bind_param($stmt1, "ii", $id, $pid);
+mysqli_stmt_bind_param($stmt1, "si", $id, $pid);
 mysqli_stmt_execute($stmt1);
 
 $result1 = mysqli_stmt_get_result($stmt1);

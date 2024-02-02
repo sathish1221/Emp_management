@@ -21,7 +21,7 @@ if (!isset($_SESSION['a_id'])) {
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Registration Info</h2>
+                    <h2 class="h2">Registration Info</h2>
                     <form action="vendor/process/addemp-process.php" method="POST" enctype="multipart/form-data">
 
 
@@ -55,7 +55,6 @@ if (!isset($_SESSION['a_id'])) {
                             <input class="input--style-1" type="password" placeholder="Password" name="password" required="required" style = "color: black;">
                         </div>
 
-                        <p>Date Of Birth</p>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -64,7 +63,6 @@ if (!isset($_SESSION['a_id'])) {
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select class = "gender" name="gender">
                                             <option disabled="disabled" selected="selected">GENDER</option>
@@ -74,7 +72,6 @@ if (!isset($_SESSION['a_id'])) {
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                         

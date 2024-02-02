@@ -20,6 +20,7 @@ $result = mysqli_query($conn, $sql);
 <html lang="en">
 <head>
     <?php  include('vendor/inc/head.php') ?>
+	<link rel="stylesheet" href="vendor/css/atten.css">
 </head>
 <body>
     
@@ -58,7 +59,7 @@ $result = mysqli_query($conn, $sql);
 					echo "<td>".$interval->days."</td>";
 					echo "<td>".$employee['reason']."</td>";
 					echo "<td>".$employee['status']."</td>";
-					echo "<td><a href=\"approve.php?emp_id=$employee[emp_id]&token=$employee[token]\"  onClick=\"return confirm('Are you sure you want to Approve the request?')\">Approve</a> | <a href=\"cancel.php?emp_id=$employee[emp_id]&token=$employee[token]\" onClick=\"return confirm('Are you sure you want to Canel the request?')\">Cancel</a></td>";
+					echo "<td><a class='approve' href=\"approve.php?emp_id=$employee[emp_id]&token=$employee[token]\"  onClick=\"return confirm('Are you sure you want to Approve the request?')\">Approve</a> | <a class='cancel' href=\"cancel.php?emp_id=$employee[emp_id]&token=$employee[token]\" onClick=\"return confirm('Are you sure you want to Canel the request?')\">Cancel</a></td>";
 
 				}
 

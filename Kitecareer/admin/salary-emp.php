@@ -22,6 +22,8 @@ $result = mysqli_query($conn, $sql);
 <body>
     
 <?php include('vendor/inc/nav.php') ?>
+<h2 class="h2">Salary Details</h2>
+<div class="contain">
 
 <table>
 			<tr>

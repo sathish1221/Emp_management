@@ -13,6 +13,7 @@ $result = mysqli_query($conn, $sql);
 <html lang="en">
 <head>
     <?php include('vendor/inc/head.php'); ?>
+	<link rel="stylesheet" href="vendor/css/project.css">
 </head>
 <body>
     <?php include('vendor/inc/nav.php'); ?>

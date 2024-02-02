@@ -66,21 +66,19 @@ while ($row = $resultAttendance->fetch_assoc()) {
 }
 
 
-
 function holidays() {
     $begin = new DateTime('2024-01-01');
     $end = new DateTime('2034-12-30');
     $end = $end->modify('+1 day');
     $interval = new DateInterval('P1D');
     $daterange = new DatePeriod($begin, $interval, $end);
-    $dateStr = date('Y-m-d', strtotime('last saturday'));
-
-
     $holidayDates = [];
 
     foreach ($daterange as $date) {
         $dayOfWeek = date('w', strtotime($date->format("Y-m-d")));
-        if ($dayOfWeek == 0 ) {
+
+        // Check for Sundays (day of the week is 0) or Fourth Saturdays
+        if ($dayOfWeek == 0 || isFourthSaturday($date)) {
             $holidayDates[] = $date->format("Y-m-d");
         }
     }
@@ -88,7 +86,23 @@ function holidays() {
     return $holidayDates;
 }
 
-$holidays = holidays(); 
+// Function to check if a given date is the fourth Saturday
+function isFourthSaturday($date) {
+    $dayOfMonth = $date->format("j");
+    $month = $date->format("n");
+    $year = $date->format("Y");
+
+    // Calculate the fourth Saturday of the month
+    $fourthSaturday = date('j', strtotime("fourth saturday $year-$month"));
+
+    // Check if the given date is the fourth Saturday
+    return $dayOfMonth == $fourthSaturday;
+}
+
+// Example usage
+$holidays = holidays();
+
+
 
 $date1 = date('t');
 
@@ -100,6 +114,7 @@ $date1 = date('t');
 <head>
     <?php include('vendor/inc/head.php') ?>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/css/atten.css">
    
     <style>
         #search-box {
@@ -116,10 +131,9 @@ $date1 = date('t');
 </head>
 <body>
     <?php include('vendor/inc/nav.php') ?>
-    <div class="container-fluid" style = "padding: 50px;">
-    <h2 style="text-align:center; font-weight:600; font-family:Times New Roman, Times, serif;">Employee Attendance</h2>
-   
-    <!-- Next and Previous Buttons -->
+    <div class="container-fluid">
+    <h2 class="h2">Employee Attendance</h2>
+   <div class="contain">
     
 
     <table border="1">
@@ -161,12 +175,11 @@ $date1 = date('t');
     </tr>
 <?php endforeach;
 
-
 ?>
     </table>
     <div style="text-align: center; margin-bottom: 20px;">
-        <a href="?month=<?php echo $prevMonth; ?>&year=<?php echo $prevYear; ?>">Previous</a> |
-        <a href="?month=<?php echo $nextMonth; ?>&year=<?php echo $nextYear; ?>">Next</a>
+        <a class="Previous" href="?month=<?php echo $prevMonth; ?>&year=<?php echo $prevYear; ?>">&laquo; Previous</a> |
+        <a class="next" href="?month=<?php echo $nextMonth; ?>&year=<?php echo $nextYear; ?>">Next &raquo;</a>
     </div>
 </div>
 </body>
