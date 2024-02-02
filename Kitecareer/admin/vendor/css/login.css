@@ -215,3 +215,16 @@ h1 {
         -o-transform: scale(1);
     }
 }
+@media only screen and (max-width: 425px) {
+    .circle {
+        width: 0rem;
+        height: 0rem;
+        background: var(--primary-color);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        position: absolute;
+    }
+}

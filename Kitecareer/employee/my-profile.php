@@ -127,11 +127,17 @@ $result = mysqli_query($conn, $sql);
                         </div>
 
                         <input type="hidden" name="id" id="textField" value="<?php echo $id;?>" required="required"><br><br>
+
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green"  name="send" >Update Info</button>
                         </div>
+
                         
                     </form>
+                    
+                    <div class="p-t-20">
+                    <button class="btn btn--radius btn--green" onclick="window.location.href = 'add-bank.php?emp_id=<?php echo $id?>';">Add Account</button>
+                    </div>  
                 </div>
             </div>
         </div>

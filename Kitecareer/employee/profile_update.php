@@ -146,7 +146,7 @@ if(isset($_POST['update']))
                        
                         <input type="hidden" name="emp_id" id="textField" value="<?php echo $id;?>" required="required"><br><br>
                         <div class="p-t-20">
-                            <button class="btn btn--radius btn--green" type="submit" name="update">Submit</button>
+                            <button class="btn btn--radius btn--green" type="submit" name="update">Update</button>
                         </div>
                         
                     </form>
